@@ -50,5 +50,4 @@ end)
 Exit.MouseButton1Click:Connect(function()
 	AnimationSelector:Destroy()
 end)
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationLatestVersion'))()if ver == _G.MationLatestVersion then else game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Your using an old version of Mation. The new script is copyed to your clip board."}) end;
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationLatestVersion'))()if ver == _G.MationLatestVersion then else game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Your using an old version of Mation. The new script is copyed to your clip board."}) end;toclipboard([[loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationMain'))()]])
