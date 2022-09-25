@@ -1,53 +1,167 @@
+-- Gui to Lua
+-- Version: 3.2
 
-local AnimationSelector = script.Parent.Parent
-local MainFrame = AnimationSelector.MainFrame
-local Cartoony = MainFrame.Cartoony
-local Toy = MainFrame.Toy
-local Exit = MainFrame.Exit
-local Title = MainFrame.Title
-local VersionText = MainFrame.Version
+-- Instances:
 
-local ver = 1.0
+local AnimationSelector = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Cartoony = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Title = Instance.new("TextLabel")
+local Version = Instance.new("TextLabel")
+local Toy = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local Exit = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 
-local function NimationLoader(value)
-	if value == "Cartoony" then
-		coroutine.resume(coroutine.create(function()
-			game:GetService("RunService").RenderStepped:Connect(function()
-				local Player = game.Players.LocalPlayer
-				local Animate = Player.Character:WaitForChild("Animate")
-				if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-					Animate.walk.WalkAnim.AnimationId = "rbxassetid://657552124"
-					Animate.run.RunAnim.AnimationId = "rbxassetid://742638842"
-					Animate.idle.Animation1.AnimationId = "rbxassetid://891621366"
-					Animate.idle.Animation2.AnimationId = "rbxassetid://891633237"
-				end
-			end)
-		end))
-	elseif value == "Toy" then
-		coroutine.resume(coroutine.create(function()
-			game:GetService("RunService").RenderStepped:Connect(function()
-				local Player = game.Players.LocalPlayer
-				local Animate = Player.Character:WaitForChild("Animate")
-				if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-					Animate.walk.WalkAnim.AnimationId = "rbxassetid://1083473930"
-					Animate.run.RunAnim.AnimationId = "rbxassetid://616163682"
-					Animate.idle.Animation1.AnimationId = "rbxassetid://782841498"
-					Animate.idle.Animation2.AnimationId = "rbxassetid://782845736"
-				end
-			end)
-		end))
+--Properties:
+
+AnimationSelector.Name = "AnimationSelector"
+AnimationSelector.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+AnimationSelector.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+AnimationSelector.DisplayOrder = 999999999
+AnimationSelector.ResetOnSpawn = false
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = AnimationSelector
+MainFrame.BackgroundColor3 = Color3.fromRGB(91, 91, 91)
+MainFrame.BackgroundTransparency = 0.300
+MainFrame.Position = UDim2.new(0.411965817, 0, 0.4057239, 0)
+MainFrame.Size = UDim2.new(0, 206, 0, 110)
+
+UICorner.CornerRadius = UDim.new(0.100000001, 1)
+UICorner.Parent = MainFrame
+
+Cartoony.Name = "Cartoony"
+Cartoony.Parent = MainFrame
+Cartoony.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
+Cartoony.BackgroundTransparency = 0.300
+Cartoony.Position = UDim2.new(0.0339805819, 0, 0.299999982, 0)
+Cartoony.Size = UDim2.new(0, 191, 0, 23)
+Cartoony.Font = Enum.Font.Unknown
+Cartoony.Text = "Cartoony"
+Cartoony.TextColor3 = Color3.fromRGB(175, 175, 175)
+Cartoony.TextSize = 14.000
+
+UICorner_2.CornerRadius = UDim.new(0.200000003, 2)
+UICorner_2.Parent = Cartoony
+
+Title.Name = "Title"
+Title.Parent = MainFrame
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.Position = UDim2.new(0.0145631069, 0, 0.0545454547, 0)
+Title.Size = UDim2.new(0, 200, 0, 14)
+Title.Font = Enum.Font.SciFi
+Title.Text = "Mation List"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextScaled = true
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+Version.Name = "Version"
+Version.Parent = MainFrame
+Version.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Version.BackgroundTransparency = 1.000
+Version.Position = UDim2.new(0.0145631069, 0, 0.154545456, 0)
+Version.Size = UDim2.new(0, 200, 0, 10)
+Version.Font = Enum.Font.SciFi
+Version.Text = "v1.0"
+Version.TextColor3 = Color3.fromRGB(255, 255, 255)
+Version.TextScaled = true
+Version.TextSize = 14.000
+Version.TextWrapped = true
+
+Toy.Name = "Toy"
+Toy.Parent = MainFrame
+Toy.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
+Toy.BackgroundTransparency = 0.300
+Toy.Position = UDim2.new(0.0339805819, 0, 0.563636363, 0)
+Toy.Size = UDim2.new(0, 191, 0, 23)
+Toy.Font = Enum.Font.Unknown
+Toy.Text = "Toy"
+Toy.TextColor3 = Color3.fromRGB(175, 175, 175)
+Toy.TextSize = 14.000
+
+UICorner_3.CornerRadius = UDim.new(0.200000003, 2)
+UICorner_3.Parent = Toy
+
+Exit.Name = "Exit"
+Exit.Parent = MainFrame
+Exit.BackgroundColor3 = Color3.fromRGB(124, 43, 43)
+Exit.BackgroundTransparency = 0.300
+Exit.Position = UDim2.new(0.257281572, 0, 0.827272713, 0)
+Exit.Size = UDim2.new(0, 99, 0, 13)
+Exit.Font = Enum.Font.Unknown
+Exit.Text = "Exit"
+Exit.TextColor3 = Color3.fromRGB(200, 200, 200)
+Exit.TextSize = 14.000
+
+UICorner_4.CornerRadius = UDim.new(50, 50)
+UICorner_4.Parent = Exit
+
+UIAspectRatioConstraint.Parent = MainFrame
+UIAspectRatioConstraint.AspectRatio = 1.873
+
+-- Scripts:
+
+local function FPCZFRT_fake_script() -- MainFrame.Main 
+	local script = Instance.new('LocalScript', MainFrame)
+
+	
+	local AnimationSelector = script.Parent.Parent
+	local MainFrame = AnimationSelector.MainFrame
+	local Cartoony = MainFrame.Cartoony
+	local Toy = MainFrame.Toy
+	local Exit = MainFrame.Exit
+	local Title = MainFrame.Title
+	local VersionText = MainFrame.Version
+	
+	local ver = 1.0
+	
+	local function NimationLoader(value)
+		if value == "Cartoony" then
+			coroutine.resume(coroutine.create(function()
+				game:GetService("RunService").RenderStepped:Connect(function()
+					local Player = game.Players.LocalPlayer
+					local Animate = Player.Character:WaitForChild("Animate")
+					if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+						Animate.walk.WalkAnim.AnimationId = "rbxassetid://657552124"
+						Animate.run.RunAnim.AnimationId = "rbxassetid://742638842"
+						Animate.idle.Animation1.AnimationId = "rbxassetid://891621366"
+						Animate.idle.Animation2.AnimationId = "rbxassetid://891633237"
+					end
+				end)
+			end))
+		elseif value == "Toy" then
+			coroutine.resume(coroutine.create(function()
+				game:GetService("RunService").RenderStepped:Connect(function()
+					local Player = game.Players.LocalPlayer
+					local Animate = Player.Character:WaitForChild("Animate")
+					if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+						Animate.walk.WalkAnim.AnimationId = "rbxassetid://1083473930"
+						Animate.run.RunAnim.AnimationId = "rbxassetid://616163682"
+						Animate.idle.Animation1.AnimationId = "rbxassetid://782841498"
+						Animate.idle.Animation2.AnimationId = "rbxassetid://782845736"
+					end
+				end)
+			end))
+		end
 	end
+	
+	Cartoony.MouseButton1Click:Connect(function()
+		NimationLoader("Cartoony")
+		AnimationSelector:Destroy()
+	end)
+	Toy.MouseButton1Click:Connect(function()
+		NimationLoader("Toy")
+		AnimationSelector:Destroy()
+	end)
+	Exit.MouseButton1Click:Connect(function()
+		AnimationSelector:Destroy()
+	end)
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationLatestVersion'))()if ver == _G.MationLatestVersion then else game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Your using an old version of Mation. The new script is copyed to your clip board."}) end;toclipboard([[loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationMain'))()]])
 end
-
-Cartoony.MouseButton1Click:Connect(function()
-	NimationLoader("Cartoony")
-	AnimationSelector:Destroy()
-end)
-Toy.MouseButton1Click:Connect(function()
-	NimationLoader("Toy")
-	AnimationSelector:Destroy()
-end)
-Exit.MouseButton1Click:Connect(function()
-	AnimationSelector:Destroy()
-end)
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationLatestVersion'))()if ver == _G.MationLatestVersion then else game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Your using an old version of Mation. The new script is copyed to your clip board."}) end;toclipboard([[loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationMain'))()]])
+coroutine.wrap(FPCZFRT_fake_script)()
