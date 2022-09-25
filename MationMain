@@ -107,7 +107,7 @@ UIAspectRatioConstraint.AspectRatio = 1.873
 
 -- Scripts:
 
-local function FPCZFRT_fake_script() -- MainFrame.Main 
+local function ARWO_fake_script() -- MainFrame.Main 
 	local script = Instance.new('LocalScript', MainFrame)
 
 	
@@ -124,6 +124,7 @@ local function FPCZFRT_fake_script() -- MainFrame.Main
 	local function NimationLoader(value)
 		if value == "Cartoony" then
 			coroutine.resume(coroutine.create(function()
+				game.Players.LocalPlayer.Character.Humanoid.Health -= math.huge
 				game:GetService("RunService").RenderStepped:Connect(function()
 					local Player = game.Players.LocalPlayer
 					local Animate = Player.Character:WaitForChild("Animate")
@@ -137,6 +138,7 @@ local function FPCZFRT_fake_script() -- MainFrame.Main
 			end))
 		elseif value == "Toy" then
 			coroutine.resume(coroutine.create(function()
+				game.Players.LocalPlayer.Character.Humanoid.Health -= math.huge
 				game:GetService("RunService").RenderStepped:Connect(function()
 					local Player = game.Players.LocalPlayer
 					local Animate = Player.Character:WaitForChild("Animate")
@@ -164,4 +166,4 @@ local function FPCZFRT_fake_script() -- MainFrame.Main
 	end)
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationLatestVersion'))()if ver == _G.MationLatestVersion then else game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Your using an old version of Mation. The new script is copyed to your clip board."}) end;toclipboard([[loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationMain'))()]])
 end
-coroutine.wrap(FPCZFRT_fake_script)()
+coroutine.wrap(ARWO_fake_script)()
