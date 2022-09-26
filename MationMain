@@ -1,8 +1,3 @@
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
-
 local TheMationsUI = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local UIGradient = Instance.new("UIGradient")
@@ -17,10 +12,9 @@ local UIListLayout = Instance.new("UIListLayout")
 local Exit = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
 
---Properties:
-
 TheMationsUI.Name = "TheMationsUI"
-TheMationsUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+TheMationsUI.Parent = game.CoreGui
+TheMationsUI.DisplayOrder = 999999999
 
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = TheMationsUI
