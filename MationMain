@@ -3,167 +3,281 @@
 
 -- Instances:
 
-local AnimationSelector = Instance.new("ScreenGui")
+local TheMationsUI = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
+local UIGradient = Instance.new("UIGradient")
 local UICorner = Instance.new("UICorner")
-local Cartoony = Instance.new("TextButton")
-local UICorner_2 = Instance.new("UICorner")
 local Title = Instance.new("TextLabel")
-local Version = Instance.new("TextLabel")
-local Toy = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local UIGradient_2 = Instance.new("UIGradient")
+local Pattern = Instance.new("ImageLabel")
 local UICorner_3 = Instance.new("UICorner")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
 local Exit = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
-local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 
 --Properties:
 
-AnimationSelector.Name = "AnimationSelector"
-AnimationSelector.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-AnimationSelector.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-AnimationSelector.DisplayOrder = 999999999
-AnimationSelector.ResetOnSpawn = false
+TheMationsUI.Name = "TheMationsUI"
+TheMationsUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 MainFrame.Name = "MainFrame"
-MainFrame.Parent = AnimationSelector
-MainFrame.BackgroundColor3 = Color3.fromRGB(91, 91, 91)
-MainFrame.BackgroundTransparency = 0.300
-MainFrame.Position = UDim2.new(0.411965817, 0, 0.4057239, 0)
-MainFrame.Size = UDim2.new(0, 206, 0, 110)
+MainFrame.Parent = TheMationsUI
+MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.378632486, 0, 0.345601887, 0)
+MainFrame.Size = UDim2.new(0, 284, 0, 183)
 
-UICorner.CornerRadius = UDim.new(0.100000001, 1)
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(137, 0, 254)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(223, 0, 255))}
+UIGradient.Parent = MainFrame
+
 UICorner.Parent = MainFrame
-
-Cartoony.Name = "Cartoony"
-Cartoony.Parent = MainFrame
-Cartoony.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
-Cartoony.BackgroundTransparency = 0.300
-Cartoony.Position = UDim2.new(0.0339805819, 0, 0.299999982, 0)
-Cartoony.Size = UDim2.new(0, 191, 0, 23)
-Cartoony.Font = Enum.Font.Unknown
-Cartoony.Text = "Cartoony"
-Cartoony.TextColor3 = Color3.fromRGB(175, 175, 175)
-Cartoony.TextSize = 14.000
-
-UICorner_2.CornerRadius = UDim.new(0.200000003, 2)
-UICorner_2.Parent = Cartoony
 
 Title.Name = "Title"
 Title.Parent = MainFrame
 Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title.BackgroundTransparency = 1.000
-Title.Position = UDim2.new(0.0145631069, 0, 0.0545454547, 0)
-Title.Size = UDim2.new(0, 200, 0, 14)
-Title.Font = Enum.Font.SciFi
-Title.Text = "Mation List"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(-0.0176056344, 0, 0.0546448082, 0)
+Title.Size = UDim2.new(0, 294, 0, 20)
+Title.Font = Enum.Font.Unknown
+Title.Text = "Mations"
+Title.TextColor3 = Color3.fromRGB(146, 70, 161)
 Title.TextScaled = true
 Title.TextSize = 14.000
 Title.TextWrapped = true
 
-Version.Name = "Version"
-Version.Parent = MainFrame
-Version.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Version.BackgroundTransparency = 1.000
-Version.Position = UDim2.new(0.0145631069, 0, 0.154545456, 0)
-Version.Size = UDim2.new(0, 200, 0, 10)
-Version.Font = Enum.Font.SciFi
-Version.Text = "v1.0"
-Version.TextColor3 = Color3.fromRGB(255, 255, 255)
-Version.TextScaled = true
-Version.TextSize = 14.000
-Version.TextWrapped = true
+UICorner_2.Parent = Title
 
-Toy.Name = "Toy"
-Toy.Parent = MainFrame
-Toy.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
-Toy.BackgroundTransparency = 0.300
-Toy.Position = UDim2.new(0.0339805819, 0, 0.563636363, 0)
-Toy.Size = UDim2.new(0, 191, 0, 23)
-Toy.Font = Enum.Font.Unknown
-Toy.Text = "Toy"
-Toy.TextColor3 = Color3.fromRGB(175, 175, 175)
-Toy.TextSize = 14.000
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(123, 0, 231)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(203, 0, 234))}
+UIGradient_2.Parent = Title
 
-UICorner_3.CornerRadius = UDim.new(0.200000003, 2)
-UICorner_3.Parent = Toy
+Pattern.Name = "Pattern"
+Pattern.Parent = MainFrame
+Pattern.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Pattern.BackgroundTransparency = 1.000
+Pattern.Position = UDim2.new(0, 0, -0.00273224036, 0)
+Pattern.Size = UDim2.new(0, 284, 0, 183)
+Pattern.Image = "rbxassetid://2151741365"
+Pattern.ImageTransparency = 0.820
+Pattern.ScaleType = Enum.ScaleType.Tile
+Pattern.SliceCenter = Rect.new(0, 256, 0, 256)
+Pattern.TileSize = UDim2.new(0, 250, 0, 250)
+
+UICorner_3.Parent = Pattern
+
+ScrollingFrame.Parent = MainFrame
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Position = UDim2.new(0.0316901393, 0, 0.224043712, 0)
+ScrollingFrame.Size = UDim2.new(0, 266, 0, 133)
+ScrollingFrame.ScrollBarThickness = 3
+
+UIListLayout.Parent = ScrollingFrame
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 3)
 
 Exit.Name = "Exit"
 Exit.Parent = MainFrame
-Exit.BackgroundColor3 = Color3.fromRGB(124, 43, 43)
-Exit.BackgroundTransparency = 0.300
-Exit.Position = UDim2.new(0.257281572, 0, 0.827272713, 0)
-Exit.Size = UDim2.new(0, 99, 0, 13)
-Exit.Font = Enum.Font.Unknown
-Exit.Text = "Exit"
-Exit.TextColor3 = Color3.fromRGB(200, 200, 200)
-Exit.TextSize = 14.000
+Exit.BackgroundColor3 = Color3.fromRGB(113, 33, 140)
+Exit.Position = UDim2.new(0.42645067, 0, 0.955393434, 0)
+Exit.Size = UDim2.new(0, 40, 0, 15)
+Exit.Font = Enum.Font.SourceSans
+Exit.Text = "exit"
+Exit.TextColor3 = Color3.fromRGB(195, 95, 172)
+Exit.TextScaled = true
+Exit.TextSize = 100.000
+Exit.TextTransparency = 1.000
+Exit.TextWrapped = true
 
-UICorner_4.CornerRadius = UDim.new(50, 50)
 UICorner_4.Parent = Exit
 
-UIAspectRatioConstraint.Parent = MainFrame
-UIAspectRatioConstraint.AspectRatio = 1.873
+-- Module Scripts:
 
--- Scripts:
+local fake_module_scripts = {}
 
-local function ARWO_fake_script() -- MainFrame.Main 
-	local script = Instance.new('LocalScript', MainFrame)
-
-	
-	local AnimationSelector = script.Parent.Parent
-	local MainFrame = AnimationSelector.MainFrame
-	local Cartoony = MainFrame.Cartoony
-	local Toy = MainFrame.Toy
-	local Exit = MainFrame.Exit
-	local Title = MainFrame.Title
-	local VersionText = MainFrame.Version
-	
-	local ver = 1.0
-	
-	local function NimationLoader(value)
-		if value == "Cartoony" then
+do -- TheMationsUI.Acts
+	local script = Instance.new('ModuleScript', TheMationsUI)
+	script.Name = "Acts"
+	local function module_script()
+		local acts = {
+			animations = {
+				"Toy";
+				"Cartoony"
+			}
+		}
+		
+		local ClickSound = Instance.new("Sound")
+		ClickSound.Parent = workspace
+		ClickSound.SoundId = "http://www.roblox.com/asset/?id=226892749"
+		ClickSound.PlaybackSpeed = 1
+		ClickSound.Volume = 1
+		
+		local HoverSound = Instance.new("Sound")
+		HoverSound.Parent = workspace
+		HoverSound.SoundId = "http://www.roblox.com/asset/?id=542332175"
+		HoverSound.PlaybackSpeed = 1
+		HoverSound.Volume = 1
+		
+		local tweenService = game:GetService("TweenService")
+		
+		function acts:CheckVersion(ver)
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationLatestVersion'))()
+			if ver == _G.MationLatestVersion then 
+				return true
+			else 
+				return false
+			end
+		end
+		
+		function acts:MakeButton(Animation)
 			coroutine.resume(coroutine.create(function()
-				game.Players.LocalPlayer.Character.Humanoid.Health -= math.huge
-				game:GetService("RunService").RenderStepped:Connect(function()
-					local Player = game.Players.LocalPlayer
-					local Animate = Player.Character:WaitForChild("Animate")
-					if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-						Animate.walk.WalkAnim.AnimationId = "rbxassetid://657552124"
-						Animate.run.RunAnim.AnimationId = "rbxassetid://742638842"
-						Animate.idle.Animation1.AnimationId = "rbxassetid://891621366"
-						Animate.idle.Animation2.AnimationId = "rbxassetid://891633237"
-					end
+				local BackgroundImage = Instance.new("ImageLabel")
+				local Button = Instance.new("TextButton")
+				local UICorner = Instance.new("UICorner")
+				local UICorner_2 = Instance.new("UICorner")
+				BackgroundImage.Name = "BackgroundImage"
+				BackgroundImage.Parent = script.Parent.MainFrame.ScrollingFrame
+				BackgroundImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				BackgroundImage.BackgroundTransparency = 1.000
+				BackgroundImage.Position = UDim2.new(0, 0, -0.0320062488, 0)
+				BackgroundImage.Size = UDim2.new(0, 200, 0, 21)
+				BackgroundImage.Image = "rbxassetid://2151743764"
+				BackgroundImage.ImageTransparency = 0.600
+				BackgroundImage.ScaleType = Enum.ScaleType.Tile
+				BackgroundImage.SliceCenter = Rect.new(0, 256, 0, 256)
+				BackgroundImage.TileSize = UDim2.new(0, 75, 0, 75)
+				Button.Name = "Button"
+				Button.Parent = BackgroundImage
+				Button.BackgroundColor3 = Color3.fromRGB(68, 68, 68)
+				Button.BackgroundTransparency = 1.000
+				Button.Position = UDim2.new(-0.000939846039, 0, -0.0421545692, 0)
+				Button.Size = UDim2.new(0, 200, 0, 21)
+				Button.Font = Enum.Font.Unknown
+				Button.Text = "Cartoony"
+				Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Button.TextScaled = true
+				Button.TextSize = 14.000
+				Button.TextWrapped = true
+				UICorner.Parent = Button
+				UICorner_2.Parent = BackgroundImage
+				Button.Text = Animation
+				Button.MouseEnter:Connect(function()
+					tweenService:Create(BackgroundImage, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {Size = UDim2.new(0, 207,0, 28)}):Play()
+					HoverSound:Play()
 				end)
-			end))
-		elseif value == "Toy" then
-			coroutine.resume(coroutine.create(function()
-				game.Players.LocalPlayer.Character.Humanoid.Health -= math.huge
-				game:GetService("RunService").RenderStepped:Connect(function()
-					local Player = game.Players.LocalPlayer
-					local Animate = Player.Character:WaitForChild("Animate")
-					if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-						Animate.walk.WalkAnim.AnimationId = "rbxassetid://1083473930"
-						Animate.run.RunAnim.AnimationId = "rbxassetid://616163682"
-						Animate.idle.Animation1.AnimationId = "rbxassetid://782841498"
-						Animate.idle.Animation2.AnimationId = "rbxassetid://782845736"
+				Button.MouseLeave:Connect(function()
+					tweenService:Create(BackgroundImage, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {Size = UDim2.new(0, 200,0, 21)}):Play()
+				end)
+				Button.MouseButton1Click:Connect(function()
+					if Animation == "Toy" then
+						coroutine.resume(coroutine.create(function()
+							while true do
+								wait()
+								local Player = game.Players.LocalPlayer
+								local Animate = Player.Character:WaitForChild("Animate")
+								if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+									Animate.walk.WalkAnim.AnimationId = "rbxassetid://1083473930"
+									Animate.run.RunAnim.AnimationId = "rbxassetid://616163682"
+									Animate.idle.Animation1.AnimationId = "rbxassetid://782841498"
+									Animate.idle.Animation2.AnimationId = "rbxassetid://782845736"
+								end
+							end
+						end))
+						game.Players.LocalPlayer.Character.Humanoid.Health -= math.huge
+						ClickSound:Play()
+						script.Parent:Destroy()
+					elseif Animation == "Cartoony" then
+						coroutine.resume(coroutine.create(function()
+							while true do
+								wait()
+								local Player = game.Players.LocalPlayer
+								local Animate = Player.Character:WaitForChild("Animate")
+								if Player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+									Animate.walk.WalkAnim.AnimationId = "rbxassetid://657552124"
+									Animate.run.RunAnim.AnimationId = "rbxassetid://742638842"
+									Animate.idle.Animation1.AnimationId = "rbxassetid://891621366"
+									Animate.idle.Animation2.AnimationId = "rbxassetid://891633237"
+								end
+							end
+						end))
+						game.Players.LocalPlayer.Character.Humanoid.Health -= math.huge
+						ClickSound:Play()
+						script.Parent:Destroy()
 					end
 				end)
 			end))
 		end
+		
+		return acts
+		
 	end
-	
-	Cartoony.MouseButton1Click:Connect(function()
-		NimationLoader("Cartoony")
-		AnimationSelector:Destroy()
+	fake_module_scripts[script] = module_script
+end
+
+
+-- Scripts:
+
+local function GYJVE_fake_script() -- TheMationsUI.Main 
+	local script = Instance.new('LocalScript', TheMationsUI)
+	local req = require
+	local require = function(obj)
+		local fake = fake_module_scripts[obj]
+		if fake then
+			return fake()
+		end
+		return req(obj)
+	end
+
+	local Player = game.Players.LocalPlayer
+	local ActsModyul = require(script.Parent.Acts)
+	local ver = 1.0
+	--[[ Button generators ]] for i,v in pairs(ActsModyul.animations) do ActsModyul:MakeButton(v) end
+	--[[ Checks Version ]] if ActsModyul:CheckVersion(ver) == false then game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Mation", Text = "Your using an Old version of Mation.", Duration = 5}) end
+	--[[ Drag Script ]] coroutine.resume(coroutine.create(function() local UIS = game:GetService('UserInputService') local frame = script.Parent.MainFrame local dragToggle = nil local dragSpeed = 0.25 local dragStart = nil local startPos = nil local function updateInput(input) local delta = input.Position - dragStart local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y) game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play() end frame.InputBegan:Connect(function(input) if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then  dragToggle = true dragStart = input.Position startPos = frame.Position input.Changed:Connect(function() if input.UserInputState == Enum.UserInputState.End then dragToggle = false end end) end end) UIS.InputChanged:Connect(function(input)if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then if dragToggle then updateInput(input) end end end) end))
+	local MainFrame = script.Parent.MainFrame
+	local ScrollingFrame = MainFrame.ScrollingFrame
+	local Exit = MainFrame.Exit
+	local Pattern = MainFrame.Pattern
+	local Title = MainFrame.Title
+	local TweenService = game:GetService("TweenService")
+	local ClickSound = Instance.new("Sound")
+	ClickSound.Parent = workspace
+	ClickSound.SoundId = "http://www.roblox.com/asset/?id=226892749"
+	ClickSound.PlaybackSpeed = 0.8
+	ClickSound.Volume = 1
+	local HoverSound = Instance.new("Sound")
+	HoverSound.Parent = workspace
+	HoverSound.SoundId = "http://www.roblox.com/asset/?id=542332175"
+	HoverSound.PlaybackSpeed = 0.8
+	HoverSound.Volume = 1
+	Exit.MouseEnter:Connect(function()
+		TweenService:Create(Exit, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {TextTransparency = 0}):Play()
+		HoverSound:Play()
 	end)
-	Toy.MouseButton1Click:Connect(function()
-		NimationLoader("Toy")
-		AnimationSelector:Destroy()
+	Exit.MouseLeave:Connect(function()
+		TweenService:Create(Exit, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {TextTransparency = 1}):Play()
+		Exit.TextTransparency = 1
 	end)
 	Exit.MouseButton1Click:Connect(function()
-		AnimationSelector:Destroy()
+		ClickSound:Play()
+		for i,v in pairs(script.Parent:GetDescendants()) do
+			if v.ClassName:match("Image") then
+				TweenService:Create(v, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {BackgroundTransparency = 1; ImageTransparency = 1}):Play()
+			elseif v.ClassName:match("Text") then
+				TweenService:Create(v, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {BackgroundTransparency = 1; TextTransparency = 1;})	:Play()
+			elseif v.ClassName:match("Scrolling") then
+				TweenService:Create(v, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {BackgroundTransparency = 1; ScrollBarImageTransparency = 1}):Play()
+			elseif v.ClassName:match("Frame") then
+				TweenService:Create(v, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {BackgroundTransparency = 1}):Play()
+			end
+		end
 	end)
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationLatestVersion'))()if ver == _G.MationLatestVersion then else game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Your using an old version of Mation. The new script is copyed to your clip board."}) end;toclipboard([[loadstring(game:HttpGet('https://raw.githubusercontent.com/Kunai7685/Mation/main/MationMain'))()]])
+	
 end
-coroutine.wrap(ARWO_fake_script)()
+coroutine.wrap(GYJVE_fake_script)()
