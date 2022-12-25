@@ -1,0 +1,439 @@
+if _G.AnimationChangerLoaded then game.StarterGui:SetCore("SendNotification", {
+	Title = "Animation Changer";
+	Text = "Already loaded.";
+	Duration = 5;
+	}) return end; _G.AnimationChangerLoaded = true
+
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local SoundService = game:GetService("SoundService")
+
+local LocalPlayer = Players:GetPlayers()[1]
+
+local AnimationPackage = {}
+local Animations = {}
+
+local function Notify(title, description, duration)
+	StarterGui:SetCore("SendNotification", {
+		Title = title;
+		Text = description;
+		Duration = duration;
+	})
+end
+
+local function PlaySound(id, volume, playbackspeed, looped)
+	local Sound = Instance.new("Sound", SoundService)
+	Sound.SoundId = "http://www.roblox.com/asset/?id="..id
+	Sound.Volume = volume
+	Sound.PlaybackSpeed = playbackspeed
+	Sound.Looped = looped
+	coroutine.resume(coroutine.create(function()
+		repeat wait() until Sound.IsLoaded
+		Sound:Play()
+		wait(Sound.TimeLength + 0.5)
+		Sound:Destroy()
+	end))
+end
+
+local function Rejoin()
+	local TeleportService = game:GetService("TeleportService")
+	TeleportService:Teleport(game.PlaceId, LocalPlayer)
+end
+
+local function ChangeAnimation(anim, animEmotes)
+	if LocalPlayer.Character["Humanoid"] then
+		if LocalPlayer.Character["Humanoid"].RigType ~= Enum.HumanoidRigType.R6 then
+			if anim and animEmotes then
+				if LocalPlayer.Character["Animate"] then
+					local Animate = LocalPlayer.Character["Animate"]
+					Animate.Enabled = false
+					Animate.cheer.CheerAnim.AnimationId = animEmotes.Cheer
+					Animate.climb.ClimbAnim.AnimationId = anim.Climb
+					for i,v in pairs(Animate.dance:GetChildren()) do
+						v.AnimationId = animEmotes.Dance.Dance1[i]
+					end
+					for i,v in pairs(Animate.dance2:GetChildren()) do
+						v.AnimationId = animEmotes.Dance.Dance2[i]
+					end
+					for i,v in pairs(Animate.dance3:GetChildren()) do
+						v.AnimationId = animEmotes.Dance.Dance3[i]
+					end
+					Animate.fall.FallAnim.AnimationId = anim.Fall
+					for i,v in pairs(Animate.idle:GetChildren()) do
+						v.AnimationId = anim.Idle[i]
+					end
+					if Animate.jump:FindFirstChild("JumpAnim") then
+						Animate.jump["JumpAnim"].AnimationId = anim.Jump
+					elseif Animate.jump:FindFirstChild("!ID!") then
+						Animate.jump["!ID!"].AnimationId = anim.Jump
+					end
+					Animate.laugh.LaughAnim.AnimationId = animEmotes.Laugh
+					Animate.point.PointAnim.AnimationId = animEmotes.Point
+					Animate.run.RunAnim.AnimationId = anim.Run
+					Animate.sit.SitAnim.AnimationId = animEmotes.Sit
+					Animate.swim.Swim.AnimationId = anim.Swim
+					Animate.swimidle.SwimIdle.AnimationId = anim.SwimIdle
+					Animate.toollunge.ToolLungeAnim.AnimationId = animEmotes.ToolLunge
+					Animate.toolnone.ToolNoneAnim.AnimationId = animEmotes.ToolNone
+					Animate.toolslash.ToolSlashAnim.AnimationId = animEmotes.ToolSlash
+					if Animate.walk:FindFirstChild("WalkAnim") then
+						Animate.walk.WalkAnim.AnimationId = anim.Walk
+					elseif Animate.walk:FindFirstChild("walk") then
+						Animate.walk.walk.AnimationId = anim.Walk
+					end
+					Animate.wave.WaveAnim.AnimationId = animEmotes.Wave
+					wait(0.05)
+					Animate.Enabled = true
+					wait(0.05)
+					LocalPlayer.Character.Humanoid.Sit = true
+					wait(0.05)
+					LocalPlayer.Character.Humanoid.Sit = false
+				end
+			end
+		end
+	end
+end
+
+local function Chatted(msg, player)
+	if string.sub(msg, 1, string.len("!copy ")):match("!copy") then
+		local PlayerName = tostring(string.sub(msg, string.len("!copy "), msg:len())):gsub(" ","")
+		print(PlayerName)
+		warn("Finding "..PlayerName.." with Username")
+		-- Finding Player
+		local targetPlayer = nil
+		local playeramount = 0
+		for i,v in pairs(game.Players:GetPlayers()) do
+			playeramount = i
+		end
+		print(playeramount)
+		if playeramount > 1 then
+		else
+			Notify(
+				"Animation Changer",
+				"What the FUCK there's no one in this server why your still trying to copy?!", 5
+			)
+			return
+		end
+		for i,v in pairs(game.Players:GetPlayers()) do
+			if v.Name:lower():match(PlayerName:lower()) then
+				targetPlayer = v
+				break
+			end
+		end
+		if targetPlayer then
+		else
+			warn("2nd attempt ".."Finding "..PlayerName.." with Displayname")
+			for i,v in pairs(game.Players:GetPlayers()) do
+				if v.DisplayName:lower():match(PlayerName:lower()) then
+					targetPlayer = v
+					break
+				end
+			end
+		end
+		if targetPlayer then
+			if targetPlayer.Character then
+				if targetPlayer.Character:FindFirstChild("Animate") then
+					local CopiedTargetPlayerAnimate = targetPlayer.Character:FindFirstChild("Animate"):Clone()
+					CopiedTargetPlayerAnimate.Enabled = false
+					wait()
+					LocalPlayer.Character:FindFirstChild("Animate"):Destroy()
+					wait()
+					CopiedTargetPlayerAnimate.Parent = LocalPlayer.Character
+					CopiedTargetPlayerAnimate.Enabled = true
+					LocalPlayer.Character.Humanoid.Sit = true
+					wait()
+					LocalPlayer.Character.Humanoid.Sit = false
+					Notify(
+						"Animation Changer", 
+						"Player Animation Copied.", 5
+					)
+				end
+			else
+				Notify(
+					"Animation Changer", 
+					"Player character has not loaded.", 5
+				)
+			end
+		else
+			Notify(
+				"Animation Changer", 
+				"Cannot find the player.", 5
+			)
+		end
+	elseif string.sub(msg, 1, string.len("!set ")):match("!set") then
+		local AnimName = tostring(string.sub(msg, string.len("!set "), msg:len())):gsub(" ","")
+		for i,v in next, Animations do
+			if i:lower():sub(1, #AnimName):match(AnimName:lower(), 1, #AnimName) then
+				AnimationPackage[i]()
+			end
+		end
+	elseif msg:match("!rj") or msg:match("!rejoin") then
+		Rejoin()
+	end
+end
+
+do
+	AnimationPackage["Emotes"] = {
+		
+		Cheer = "http://www.roblox.com/asset/?id=507770677";
+		
+		Dance = {
+			Dance1 = {
+
+				"http://www.roblox.com/asset/?id=507771019";
+
+				"http://www.roblox.com/asset/?id=507771955";
+
+				"http://www.roblox.com/asset/?id=507772104";
+
+			};Dance2 = {
+
+				"http://www.roblox.com/asset/?id=507776043";
+
+				"http://www.roblox.com/asset/?id=507776720";
+
+				"http://www.roblox.com/asset/?id=507776879";
+
+			};Dance3 = {
+
+				"http://www.roblox.com/asset/?id=507777268";
+
+				"http://www.roblox.com/asset/?id=507777451";
+
+				"http://www.roblox.com/asset/?id=507777623";
+
+			};
+		};
+		
+		Laugh = "http://www.roblox.com/asset/?id=507770818";
+		
+		Point = "http://www.roblox.com/asset/?id=507770453";
+		
+		Sit = "http://www.roblox.com/asset/?id=2506281703";
+		
+		ToolLunge = "http://www.roblox.com/asset/?id=522638767";
+		
+		ToolNone = "http://www.roblox.com/asset/?id=507768375";
+		
+		ToolSlash = "http://www.roblox.com/asset/?id=522635514";
+		
+		Wave = "http://www.roblox.com/asset/?id=507770239";
+		
+	}
+	
+	Animations["MrToilet"] = {
+		Climb = "http://www.roblox.com/asset/?id=2510192778";
+
+		Fall = "http://www.roblox.com/asset/?id=507767968";
+
+		Idle = {
+
+			"http://www.roblox.com/asset/?id=4417977954";
+
+			"http://www.roblox.com/asset/?id=4417978624";
+
+		};
+
+		Jump = "http://www.roblox.com/asset/?id=2510197830";
+
+		Run = "http://www.roblox.com/asset/?id=4417979645";
+
+		Swim = "http://www.roblox.com/asset/?id=2510199791";
+
+		SwimIdle = "http://www.roblox.com/asset/?id=2510201162";
+
+		Walk = "http://www.roblox.com/asset/?id=2510202577";
+	}
+	AnimationPackage["MrToilet"] = function()
+		local AnimName = "MrToilet"
+		local AnimPackage = Animations[AnimName]
+		local AnimEmote = AnimationPackage.Emotes
+		ChangeAnimation(AnimPackage, AnimEmote)
+		Notify(
+			"Animation Changer",
+			"Changed to "..AnimName,5
+		)
+	end
+	
+	Animations["Toy"] = {
+		
+		Climb = "http://www.roblox.com/asset/?id=782843869";
+
+		Fall = "http://www.roblox.com/asset/?id=782846423";
+
+		Idle = {
+
+			"http://www.roblox.com/asset/?id=782841498";
+
+			"http://www.roblox.com/asset/?id=782845736";
+
+		};
+
+		Jump = "http://www.roblox.com/asset/?id=782847020";
+
+		Run = "http://www.roblox.com/asset/?id=782842708";
+
+		Swim = "http://www.roblox.com/asset/?id=782844582";
+
+		SwimIdle = "http://www.roblox.com/asset/?id=782845186";
+
+		Walk = "http://www.roblox.com/asset/?id=782843345";
+		
+	}
+	AnimationPackage["Toy"] = function()
+		local AnimName = "Toy"
+		local AnimPackage = Animations[AnimName]
+		local AnimEmote = AnimationPackage.Emotes
+		ChangeAnimation(AnimPackage, AnimEmote)
+		Notify(
+			"Animation Changer",
+			"Changed to "..AnimName,5
+		)
+	end
+	
+	Animations["Default"] = {
+
+		Climb = "http://www.roblox.com/asset/?id=507765644";
+
+		Fall = "http://www.roblox.com/asset/?id=507767968";
+
+		Idle = {
+
+			"http://www.roblox.com/asset/?id=507766388";
+
+			"http://www.roblox.com/asset/?id=507766666";
+
+		};
+
+		Jump = "http://www.roblox.com/asset/?id=507765000";
+
+		Run = "http://www.roblox.com/asset/?id=913376220";
+
+		Swim = "http://www.roblox.com/asset/?id=913384386";
+
+		SwimIdle = "http://www.roblox.com/asset/?id=913389285";
+
+		Walk = "http://www.roblox.com/asset/?id=913402848";
+
+	}
+	AnimationPackage["Default"] = function()
+		local AnimName = "Default"
+		local AnimPackage = Animations[AnimName]
+		local AnimEmote = AnimationPackage.Emotes
+		ChangeAnimation(AnimPackage, AnimEmote)
+		Notify(
+			"Animation Changer",
+			"Changed to "..AnimName,5
+		)
+	end
+	
+	Animations["Cartoony"] = {
+
+		Climb = "http://www.roblox.com/asset/?id=742636889";
+
+		Fall = "http://www.roblox.com/asset/?id=742637151";
+
+		Idle = {
+
+			"http://www.roblox.com/asset/?id=742637544";
+
+			"http://www.roblox.com/asset/?id=742638445";
+
+		};
+
+		Jump = "http://www.roblox.com/asset/?id=742637942";
+
+		Run = "http://www.roblox.com/asset/?id=742638842";
+
+		Swim = "http://www.roblox.com/asset/?id=742639220";
+
+		SwimIdle = "http://www.roblox.com/asset/?id=742639812";
+
+		Walk = "http://www.roblox.com/asset/?id=742640026";
+
+	}
+	AnimationPackage["Cartoony"] = function()
+		local AnimName = "Cartoony"
+		local AnimPackage = Animations[AnimName]
+		local AnimEmote = AnimationPackage.Emotes
+		ChangeAnimation(AnimPackage, AnimEmote)
+		Notify(
+			"Animation Changer",
+			"Changed to "..AnimName,5
+		)
+	end
+	
+	Animations["Bubble"] = {
+
+		Climb = "http://www.roblox.com/asset/?id=909997997";
+
+		Fall = "http://www.roblox.com/asset/?id=910001910";
+
+		Idle = {
+
+			"http://www.roblox.com/asset/?id=910004836";
+
+			"http://www.roblox.com/asset/?id=910009958";
+
+		};
+
+		Jump = "http://www.roblox.com/asset/?id=910016857";
+
+		Run = "http://www.roblox.com/asset/?id=910025107";
+
+		Swim = "http://www.roblox.com/asset/?id=910028158";
+
+		SwimIdle = "http://www.roblox.com/asset/?id=910030921";
+
+		Walk = "http://www.roblox.com/asset/?id=910034870";
+
+	}
+	AnimationPackage["Bubble"] = function()
+		local AnimName = "Bubble"
+		local AnimPackage = Animations[AnimName]
+		local AnimEmote = AnimationPackage.Emotes
+		ChangeAnimation(AnimPackage, AnimEmote)
+		Notify(
+			"Animation Changer",
+			"Changed to "..AnimName,5
+		)
+	end
+	
+	Animations["Udzal"] = {
+
+		Climb = "http://www.roblox.com/asset/?id=10921257536";
+
+		Fall = "http://www.roblox.com/asset/?id=10921262864";
+
+		Idle = {
+
+			"rbxassetid://3303162274";
+
+			"rbxassetid://3303162549";
+
+		};
+
+		Jump = "http://www.roblox.com/asset/?id=10921263860";
+
+		Run = "http://www.roblox.com/asset/?id=3236836670";
+
+		Swim = "http://www.roblox.com/asset/?id=10921264784";
+
+		SwimIdle = "http://www.roblox.com/asset/?id=10921265698";
+
+		Walk = "http://www.roblox.com/asset/?id=3303162967";
+
+	}
+	AnimationPackage["Udzal"] = function()
+		local AnimName = "Udzal"
+		local AnimPackage = Animations[AnimName]
+		local AnimEmote = AnimationPackage.Emotes
+		ChangeAnimation(AnimPackage, AnimEmote)
+		Notify(
+			"Animation Changer",
+			"Changed to "..AnimName,5
+		)
+	end
+end
+
+LocalPlayer.Chatted:Connect(Chatted)
