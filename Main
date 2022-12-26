@@ -1,8 +1,34 @@
-if _G.AnimationChangerLoaded then game.StarterGui:SetCore("SendNotification", {
-	Title = "Animation Changer";
-	Text = "Already loaded.";
-	Duration = 5;
-	}) return end; _G.AnimationChangerLoaded = true
+if _G.AnimationChangerLoaded then 
+	if _G.AnimationChangerLoaded == 4 then
+		game.StarterGui:SetCore("SendNotification", {
+			Title = "Animation Changer";
+			Text = "Bro what the fuck?! I said its already LOADED!";
+			Duration = 5;
+		})
+	elseif _G.AnimationChangerLoaded == 20 then
+		game.Players.LocalPlayer:Kick(" Nah fuck you i had enough.")
+	else
+		_G.AnimationChangerLoaded = 1
+		game.StarterGui:SetCore("SendNotification", {
+			Title = "Animation Changer";
+			Text = "Already loaded.";
+			Duration = 5;
+		})
+	end
+	return
+else
+	_G.AnimationChangerLoaded = 0
+end coroutine.resume(coroutine.create(function()
+	repeat wait(5) print("going")
+		if _G.AnimationChangerLoaded == 0 then
+		else
+			_G.AnimationChangerLoaded -= 1
+			if _G.AnimationChangerLoaded < 0 then
+				_G.AnimationChangerLoaded = 0
+			end
+		end
+	until true
+end))
 
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
