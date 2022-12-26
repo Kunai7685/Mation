@@ -472,3 +472,4 @@ LocalPlayer.Chatted:Connect(Chatted)
 
 Notify("Animation Changer", "Is Loaded Successfully.", 5)
 Notify("Animation Changer", [[Type in the chat "!help".]], 5)
+-- end
