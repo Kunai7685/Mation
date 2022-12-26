@@ -1,14 +1,15 @@
 if _G.AnimationChangerLoaded then 
 	if _G.AnimationChangerLoaded == 4 then
+		_G.AnimationChangerLoaded += 1
 		game.StarterGui:SetCore("SendNotification", {
 			Title = "Animation Changer";
 			Text = "Bro what the fuck?! I said its already LOADED!";
 			Duration = 5;
 		})
 	elseif _G.AnimationChangerLoaded == 20 then
-		game.Players.LocalPlayer:Kick(" Nah fuck you i had enough.")
+		game.Players.LocalPlayer:Kick("Nah fuck you i had enough.")
 	else
-		_G.AnimationChangerLoaded = 1
+		_G.AnimationChangerLoaded += 1
 		game.StarterGui:SetCore("SendNotification", {
 			Title = "Animation Changer";
 			Text = "Already loaded.";
