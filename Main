@@ -184,8 +184,11 @@ local function Chatted(msg, player)
 				AnimationPackage[i]()
 			end
 		end
-	elseif msg:match("!rj") or msg:match("!rejoin") then
+	elseif string.sub(msg, 1, string.len("!rj")):match("!rj") or string.sub(msg, 1, string.len("!rejoin")):match("!rejoin") then
 		Rejoin()
+	elseif string.sub(msg, 1, string.len("!help")):match("!help") then
+		local HelpFrame =  script.Parent.HelpFrame
+		HelpFrame.Visible = true
 	end
 end
 
@@ -455,4 +458,24 @@ end
 
 LocalPlayer.Chatted:Connect(Chatted)
 
+-- UI
+
+do -- HelpFrame
+	local HelpFrame = script.Parent.HelpFrame
+	local ThankYouButton = HelpFrame.ThankYou
+	local CommandText = HelpFrame.CommandText
+	CommandText.Text = [[
+			Commands:
+			!help -- get help.
+			!copy -- copy players animation.
+			!set -- set your animation ex: !set toy.
+			!rj/!rejoin -- Rejoin the server.
+			]]
+	ThankYouButton.MouseButton1Click:Connect(function()
+		HelpFrame.Visible = false
+	end)
+	print("HelpFrame Loaded.")
+end
+
 Notify("Animation Changer", "Is Loaded Successfully.", 5)
+Notify("Animation Changer", [[Type in the chat "!help".]], 5)
