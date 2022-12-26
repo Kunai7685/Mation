@@ -193,7 +193,6 @@ local function Chatted(msg, player)
 		!set
 		!anims
 		!rj/rejoin
-		!help
 		]], 5)
 		Notify("---", [[
 		!help
