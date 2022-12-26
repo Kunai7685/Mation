@@ -1,82 +1,3 @@
--- GUI to Lua 
--- Version: 0.0.3
-
--- Instances:
-
-local AnimChangerUI = Instance.new("ScreenGui")
-local HelpFrame_1 = Instance.new("Frame")
-local ThankYou_1 = Instance.new("TextButton")
-local UICorner_1 = Instance.new("UICorner")
-local Title_1 = Instance.new("TextLabel")
-local UICorner_2 = Instance.new("UICorner")
-local CommandText_1 = Instance.new("TextLabel")
-local UICorner_3 = Instance.new("UICorner")
-
--- Properties:
-AnimChangerUI.Name = "AnimChangerUI"
-AnimChangerUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-HelpFrame_1.Name = "HelpFrame"
-HelpFrame_1.Parent = AnimChangerUI
-HelpFrame_1.AnchorPoint = Vector2.new(0.5, 0.5)
-HelpFrame_1.BackgroundColor3 = Color3.fromRGB(49,49,49)
-HelpFrame_1.BackgroundTransparency = 0.20000000298023224
-HelpFrame_1.BorderColor3 = Color3.fromRGB(79,79,79)
-HelpFrame_1.Position = UDim2.new(0.5, 0,0.5, 0)
-HelpFrame_1.Size = UDim2.new(0, 237,0, 160)
-
-ThankYou_1.Name = "ThankYou"
-ThankYou_1.Parent = HelpFrame_1
-ThankYou_1.Active = true
-ThankYou_1.BackgroundColor3 = Color3.fromRGB(32,49,31)
-ThankYou_1.BackgroundTransparency = 0.20000000298023224
-ThankYou_1.BorderColor3 = Color3.fromRGB(79,79,79)
-ThankYou_1.Position = UDim2.new(0.0759493634, 0,1.03750002, 0)
-ThankYou_1.Size = UDim2.new(0, 200,0, 25)
-ThankYou_1.Font = Enum.Font.RobotoMono
-ThankYou_1.Text = "Thank you."
-ThankYou_1.TextColor3 = Color3.fromRGB(222,222,222)
-ThankYou_1.TextSize = 18
-ThankYou_1.TextTransparency = 0.5
-ThankYou_1.TextWrapped = true
-
-UICorner_1.Parent = ThankYou_1
-
-Title_1.Name = "Title"
-Title_1.Parent = HelpFrame_1
-Title_1.BackgroundColor3 = Color3.fromRGB(49,49,49)
-Title_1.BackgroundTransparency = 0.20000000298023224
-Title_1.BorderColor3 = Color3.fromRGB(79,79,79)
-Title_1.BorderSizePixel = 0
-Title_1.Position = UDim2.new(0, 0,0.0375000015, 0)
-Title_1.Size = UDim2.new(0, 237,0, 23)
-Title_1.Font = Enum.Font.RobotoMono
-Title_1.Text = "Animation Changer"
-Title_1.TextColor3 = Color3.fromRGB(222,222,222)
-Title_1.TextSize = 18
-Title_1.TextTransparency = 0.5
-Title_1.TextWrapped = true
-
-UICorner_2.Parent = HelpFrame_1
-
-CommandText_1.Name = "CommandText"
-CommandText_1.Parent = HelpFrame_1
-CommandText_1.BackgroundColor3 = Color3.fromRGB(49,49,49)
-CommandText_1.BackgroundTransparency = 0.20000000298023224
-CommandText_1.BorderColor3 = Color3.fromRGB(27,42,53)
-CommandText_1.Position = UDim2.new(0.0759493634, 0,0.21875, 0)
-CommandText_1.Size = UDim2.new(0, 200,0, 119)
-CommandText_1.Font = Enum.Font.RobotoMono
-CommandText_1.Text = "Commands:"
-CommandText_1.TextColor3 = Color3.fromRGB(222,222,222)
-CommandText_1.TextSize = 13
-CommandText_1.TextTransparency = 0.3499999940395355
-CommandText_1.TextYAlignment = Enum.TextYAlignment.Top
-
-UICorner_3.Parent = CommandText_1
-
-local function QIzzroDwirhMwoET()
-local script = Instance.new("LocalScript",AnimChangerUI)
 if _G.AnimationChangerLoaded then 
 	if _G.AnimationChangerLoaded == 4 then
 		_G.AnimationChangerLoaded += 1
@@ -266,8 +187,18 @@ local function Chatted(msg, player)
 	elseif string.sub(msg, 1, string.len("!rj")):match("!rj") or string.sub(msg, 1, string.len("!rejoin")):match("!rejoin") then
 		Rejoin()
 	elseif string.sub(msg, 1, string.len("!help")):match("!help") then
-		local HelpFrame =  script.Parent.HelpFrame
-		HelpFrame.Visible = true
+		Notify("Animation Changer", "Commands:", 5)
+		Notify("Animation Changer", [[
+		!copy
+		!set
+		!anims
+		]], 5)
+		Notify("Animation Changer", [[
+		!rj/rejoin
+		!help
+		]], 5)
+	elseif string.sub(msg, 1, string.len("!anims")):match("!anims") then
+		Notify("Animation Changer", "Coming Soon!", 5)
 	end
 end
 
@@ -539,25 +470,5 @@ LocalPlayer.Chatted:Connect(Chatted)
 
 -- UI
 
-do -- HelpFrame
-	local HelpFrame = script.Parent.HelpFrame
-	local ThankYouButton = HelpFrame.ThankYou
-	local CommandText = HelpFrame.CommandText
-	CommandText.Text = [[
-			Commands:
-			!help -- get help.
-			!copy -- copy players animation.
-			!set -- set your animation ex: !set toy.
-			!rj/!rejoin -- Rejoin the server.
-			]]
-	ThankYouButton.MouseButton1Click:Connect(function()
-		HelpFrame.Visible = false
-	end)
-	print("HelpFrame Loaded.")
-end
-
 Notify("Animation Changer", "Is Loaded Successfully.", 5)
 Notify("Animation Changer", [[Type in the chat "!help".]], 5)
-
-end
-coroutine.wrap(QIzzroDwirhMwoET)()
