@@ -18,17 +18,7 @@ if _G.AnimationChangerLoaded then
 	return
 else
 	_G.AnimationChangerLoaded = 0
-end coroutine.resume(coroutine.create(function()
-	repeat wait(5) print("going")
-		if _G.AnimationChangerLoaded == 0 then
-		else
-			_G.AnimationChangerLoaded -= 1
-			if _G.AnimationChangerLoaded < 0 then
-				_G.AnimationChangerLoaded = 0
-			end
-		end
-	until true
-end))
+end 
 
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
@@ -463,3 +453,5 @@ do
 end
 
 LocalPlayer.Chatted:Connect(Chatted)
+
+Notify("Animation Changer", "Is Loaded Successfully.", 5)
