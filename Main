@@ -188,11 +188,14 @@ local function Chatted(msg, player)
 		Rejoin()
 	elseif string.sub(msg, 1, string.len("!help")):match("!help") then
 		Notify("Animation Changer", "Commands:", 5)
-		Notify("", [[
+		Notify("---", [[
 		!copy
 		!set
 		!anims
 		!rj/rejoin
+		!help
+		]], 5)
+		Notify("---", [[
 		!help
 		]], 5)
 	elseif string.sub(msg, 1, string.len("!anims")):match("!anims") then
